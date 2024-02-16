@@ -1,20 +1,22 @@
 terraform {
   required_providers {
-    sapdi = {
-      source = "mondata.de/terraform/sap-di"
+    salesforce = {
+      source = "mondata.de/terraform/salesforce"
     }
   }
 }
 
-provider "sapdi" {
+provider "salesforce" {
+  api_host = "https://xyz.my.salesforce.com"
+  api_version = "v59.0"
+  auth_host = "https://login.salesforce.com/services/oauth2/token"
+  client_id = "idisjisjisjsfjs"
+  client_secret = "sajfaspojfapopsa"
+  grant_type = "password"
   username = "admin"
-  password = "test123"
-  host     = "http://localhost:8080"
+  password = "password123"
 }
 
-data "sapdi_factsheet" "test" {
-  metadata = {
-    uri           = "/XYZ/012/ABCD"
-    connection_id = "P40_XYZ"
-  }
+data "salesforce_description" "test" {
+  name = "Account"
 }
