@@ -6,40 +6,29 @@ import (
 	"github.com/hashicorp/terraform-plugin-testing/helper/resource"
 )
 
-func TestAccFactsheetsDataSource(t *testing.T) {
+func TestAccDescriptionsDataSource(t *testing.T) {
 	resource.Test(t, resource.TestCase{
 		ProtoV6ProviderFactories: testAccProtoV6ProviderFactories,
 		Steps: []resource.TestStep{
 			// Read testing
 			{
-				Config: providerConfig + `data "sapdi_factsheet" "test" {
-					metadata = {
-						uri = "/XYZ/012/ABCD"
-						connection_id = "P40_XYZ"
-					}
+				Config: providerConfig + `data "salesforce_description" "test" {
+					name = "test"
 				}`,
 				Check: resource.ComposeAggregateTestCheckFunc(
 					// Verify metadata
-					resource.TestCheckResourceAttr("data.sapdi_factsheet.test", "metadata.connection_id", "P40_XYZ"),
-					resource.TestCheckResourceAttr("data.sapdi_factsheet.test", "metadata.name", "ABCD"),
-					resource.TestCheckResourceAttr("data.sapdi_factsheet.test", "metadata.uri", "/XYZ/012/ABCD"),
-					resource.TestCheckResourceAttr("data.sapdi_factsheet.test", "metadata.descriptions.#", "1"),
-					resource.TestCheckResourceAttr("data.sapdi_factsheet.test", "metadata.descriptions.0.origin", "REMOTE"),
-					resource.TestCheckResourceAttr("data.sapdi_factsheet.test", "metadata.descriptions.0.type", "SHORT"),
-					resource.TestCheckResourceAttr("data.sapdi_factsheet.test", "metadata.descriptions.0.value", "Characteristic"),
+					resource.TestCheckResourceAttr("data.salesforce_description.test", "name", "test"),
+					resource.TestCheckResourceAttr("data.salesforce_description.test", "label", "Training Course"),
 
 					// Verify number of columns returned
-					resource.TestCheckResourceAttr("data.sapdi_factsheet.test", "columns.#", "2"),
+					resource.TestCheckResourceAttr("data.salesforce_description.test", "columns.#", "2"),
 					// Verify the first column to ensure all attributes are set
-					resource.TestCheckResourceAttr("data.sapdi_factsheet.test", "columns.0.name", "MANDT"),
-					resource.TestCheckResourceAttr("data.sapdi_factsheet.test", "columns.0.type", "STRING"),
-					resource.TestCheckResourceAttr("data.sapdi_factsheet.test", "columns.0.descriptions.#", "1"),
-					resource.TestCheckResourceAttr("data.sapdi_factsheet.test", "columns.0.descriptions.0.origin", "REMOTE"),
-					resource.TestCheckResourceAttr("data.sapdi_factsheet.test", "columns.0.descriptions.0.type", "SHORT"),
-					resource.TestCheckResourceAttr("data.sapdi_factsheet.test", "columns.0.descriptions.0.value", "Client"),
+					resource.TestCheckResourceAttr("data.salesforce_description.test", "columns.0.name", "OwnerId"),
+					resource.TestCheckResourceAttr("data.salesforce_description.test", "columns.0.label", "Owner ID"),
+					resource.TestCheckResourceAttr("data.salesforce_description.test", "columns.0.type", "reference"),
 
 					// Verify placeholder id attribute
-					resource.TestCheckResourceAttr("data.sapdi_factsheet.test", "id", "placeholder"),
+					resource.TestCheckResourceAttr("data.salesforce_description.test", "id", "placeholder"),
 				),
 			},
 		},
