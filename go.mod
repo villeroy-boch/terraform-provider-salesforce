@@ -1,4 +1,4 @@
-module github.com/mondata-dev/terraform-provider-salesforce
+module github.com/villeroy-boch/tf-provider-salesforce
 
 go 1.20
 

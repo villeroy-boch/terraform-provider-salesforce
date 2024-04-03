@@ -9,7 +9,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-log/tflog"
 
-	"github.com/mondata-dev/terraform-provider-salesforce/internal/salesforce"
+	"github.com/villeroy-boch/tf-provider-salesforce/internal/salesforce"
 )
 
 // Ensure the implementation satisfies the expected interfaces.

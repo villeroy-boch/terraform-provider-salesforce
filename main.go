@@ -10,7 +10,7 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework/providerserver"
 
-	"github.com/mondata-dev/terraform-provider-salesforce/internal/provider"
+	"github.com/villeroy-boch/tf-provider-salesforce/internal/provider"
 )
 
 // Run "go generate" to format example terraform files and generate the docs for the registry/website
@@ -44,7 +44,7 @@ func main() {
 		// provider address is used in these tutorials in conjunction with a
 		// specific Terraform CLI configuration for manual development testing
 		// of this provider.
-		Address: "mondata.de/terraform/salesforce",
+		Address: "villeroy-boch.de/terraform/salesforce",
 		Debug:   debug,
 	}
 

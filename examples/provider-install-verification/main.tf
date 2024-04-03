@@ -1,7 +1,7 @@
 terraform {
   required_providers {
     salesforce = {
-      source = "mondata.de/terraform/salesforce"
+      source = "villeroy-boch.de/terraform/salesforce"
     }
   }
 }
