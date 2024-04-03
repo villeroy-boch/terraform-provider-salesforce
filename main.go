@@ -10,7 +10,7 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-framework/providerserver"
 
-	"github.com/villeroy-boch/tf-provider-salesforce/internal/provider"
+	"github.com/villeroy-boch/terraform-provider-salesforce/internal/provider"
 )
 
 // Run "go generate" to format example terraform files and generate the docs for the registry/website
