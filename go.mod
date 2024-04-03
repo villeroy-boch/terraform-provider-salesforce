@@ -1,4 +1,4 @@
-module github.com/villeroy-boch/tf-provider-salesforce
+module github.com/villeroy-boch/terraform-provider-salesforce
 
 go 1.20
 
