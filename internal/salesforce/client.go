@@ -159,9 +159,7 @@ func (c *Client) doRequest(req *http.Request) ([]byte, error) {
 		return nil, err
 	}
 	defer func(Body io.ReadCloser) {
-		err := Body.Close()
-		if err != nil {
-		}
+		Body.Close()
 	}(res.Body)
 
 	body, err := io.ReadAll(res.Body)
