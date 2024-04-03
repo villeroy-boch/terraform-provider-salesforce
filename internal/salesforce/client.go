@@ -70,6 +70,7 @@ func getBearerToken(auth AuthStruct) (string, error) {
 
 	fw, err := writer.CreateFormField("client_id")
 	if err != nil {
+		return "", err
 	}
 	_, err = io.Copy(fw, strings.NewReader(auth.ClientID))
 	if err != nil {
@@ -77,6 +78,7 @@ func getBearerToken(auth AuthStruct) (string, error) {
 	}
 	fw, err = writer.CreateFormField("client_secret")
 	if err != nil {
+		return "", err
 	}
 	_, err = io.Copy(fw, strings.NewReader(auth.ClientSecret))
 	if err != nil {
@@ -84,6 +86,7 @@ func getBearerToken(auth AuthStruct) (string, error) {
 	}
 	fw, err = writer.CreateFormField("grant_type")
 	if err != nil {
+		return "", err
 	}
 	_, err = io.Copy(fw, strings.NewReader(auth.GrantType))
 	if err != nil {
@@ -91,6 +94,7 @@ func getBearerToken(auth AuthStruct) (string, error) {
 	}
 	fw, err = writer.CreateFormField("username")
 	if err != nil {
+		return "", err
 	}
 	_, err = io.Copy(fw, strings.NewReader(auth.Username))
 	if err != nil {
@@ -98,6 +102,7 @@ func getBearerToken(auth AuthStruct) (string, error) {
 	}
 	fw, err = writer.CreateFormField("password")
 	if err != nil {
+		return "", err
 	}
 	_, err = io.Copy(fw, strings.NewReader(auth.Password))
 	if err != nil {
@@ -124,9 +129,7 @@ func getBearerToken(auth AuthStruct) (string, error) {
 		return "", err
 	}
 	defer func(Body io.ReadCloser) {
-		err := Body.Close()
-		if err != nil {
-		}
+		Body.Close()
 	}(resp.Body)
 
 	body, err := io.ReadAll(resp.Body)
